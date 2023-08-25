@@ -11,7 +11,7 @@
   "repository": "https://github.com/baguette-exchange/sdk",
   "keywords": [
     "baguette",
-    "avalanche"
+    "SHIBARIUM"
   ],
   "module": "dist/sdk.esm.js",
   "scripts": {

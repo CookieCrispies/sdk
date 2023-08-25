@@ -1,5 +1,5 @@
 import invariant from 'tiny-invariant'
-import { ChainId, WAVAX as _WAVAX, TradeType, Rounding, Token, TokenAmount, Pair, Route, Trade } from '../src'
+import { ChainId, WBONE as _WBONE, TradeType, Rounding, Token, TokenAmount, Pair, Route, Trade } from '../src'
 
 const ADDRESSES = [
   '0x0000000000000000000000000000000000000001',
@@ -7,7 +7,7 @@ const ADDRESSES = [
   '0x0000000000000000000000000000000000000003'
 ]
 const CHAIN_ID = ChainId.FUJI
-const WETH = _WAVAX[ChainId.FUJI]
+const WETH = _WBONE[ChainId.FUJI]
 const DECIMAL_PERMUTATIONS: [number, number, number][] = [
   [0, 0, 0],
   [0, 9, 18],

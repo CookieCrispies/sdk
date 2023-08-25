@@ -1,4 +1,4 @@
-import { ChainId, Token, Pair, TokenAmount, WAVAX, Price } from '../src'
+import { ChainId, Token, Pair, TokenAmount, WBONE, Price } from '../src'
 
 describe('Pair', () => {
 
@@ -7,7 +7,7 @@ describe('Pair', () => {
 
   describe('constructor', () => {
     it('cannot be used for tokens on different chains', () => {
-      expect(() => new Pair(new TokenAmount(DAS, '100'), new TokenAmount(WAVAX[ChainId.FUJI], '100'), ChainId.FUJI)).toThrow(
+      expect(() => new Pair(new TokenAmount(DAS, '100'), new TokenAmount(WBONE[ChainId.FUJI], '100'), ChainId.FUJI)).toThrow(
         'CHAIN_IDS'
       )
     })
@@ -16,7 +16,7 @@ describe('Pair', () => {
   describe('#getAddress', () => {
     it('returns the correct address', () => {
       //expect(Pair.getAddress(DAS, CON)).toEqual('0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5')
-      expect(Pair.getAddress(DAS, CON, ChainId.AVALANCHE)).toEqual('0xaf5fdF7De60779DA4409498DfdfA3803984e8536')
+      expect(Pair.getAddress(DAS, CON, ChainId.SHIBARIUM)).toEqual('0xaf5fdF7De60779DA4409498DfdfA3803984e8536')
     })
   })
 
@@ -83,7 +83,7 @@ describe('Pair', () => {
     })
 
     it('throws if invalid token', () => {
-      expect(() => pair.priceOf(WAVAX[ChainId.FUJI])).toThrow('TOKEN')
+      expect(() => pair.priceOf(WBONE[ChainId.FUJI])).toThrow('TOKEN')
     })
   })
 
@@ -99,7 +99,7 @@ describe('Pair', () => {
 
     it('throws if not in the pair', () => {
       expect(() =>
-        new Pair(new TokenAmount(CON, '101'), new TokenAmount(DAS, '100'), ChainId.FUJI).reserveOf(WAVAX[ChainId.FUJI])
+        new Pair(new TokenAmount(CON, '101'), new TokenAmount(DAS, '100'), ChainId.FUJI).reserveOf(WBONE[ChainId.FUJI])
       ).toThrow('TOKEN')
     })
   })
@@ -114,7 +114,7 @@ describe('Pair', () => {
     expect(new Pair(new TokenAmount(DAS, '100'), new TokenAmount(CON, '100'), ChainId.FUJI).involvesToken(DAS)).toEqual(true)
     expect(new Pair(new TokenAmount(DAS, '100'), new TokenAmount(CON, '100'), ChainId.FUJI).involvesToken(CON)).toEqual(true)
     expect(
-      new Pair(new TokenAmount(DAS, '100'), new TokenAmount(CON, '100'), ChainId.FUJI).involvesToken(WAVAX[ChainId.FUJI])
+      new Pair(new TokenAmount(DAS, '100'), new TokenAmount(CON, '100'), ChainId.FUJI).involvesToken(WBONE[ChainId.FUJI])
     ).toEqual(false)
   })
 })

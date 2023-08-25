@@ -2,7 +2,7 @@ import { ChainId } from '../constants'
 import invariant from 'tiny-invariant'
 
 import { Currency, CAVAX } from './currency'
-import { Token, WAVAX } from './token'
+import { Token, WBONE } from './token'
 import { Pair } from './pair'
 import { Price } from './fractions/price'
 
@@ -21,17 +21,17 @@ export class Route {
     )
     invariant(
       (input instanceof Token && pairs[0].involvesToken(input)) ||
-        (input === CAVAX && pairs[0].involvesToken(WAVAX[pairs[0].chainId])),
+        (input === CAVAX && pairs[0].involvesToken(WBONE[pairs[0].chainId])),
       'INPUT'
     )
     invariant(
       typeof output === 'undefined' ||
         (output instanceof Token && pairs[pairs.length - 1].involvesToken(output)) ||
-        (output === CAVAX && pairs[pairs.length - 1].involvesToken(WAVAX[pairs[0].chainId])),
+        (output === CAVAX && pairs[pairs.length - 1].involvesToken(WBONE[pairs[0].chainId])),
       'OUTPUT'
     )
 
-    const path: Token[] = [input instanceof Token ? input : WAVAX[pairs[0].chainId]]
+    const path: Token[] = [input instanceof Token ? input : WBONE[pairs[0].chainId]]
     for (const [i, pair] of pairs.entries()) {
       const currentInput = path[i]
       invariant(currentInput.equals(pair.token0) || currentInput.equals(pair.token1), 'PATH')

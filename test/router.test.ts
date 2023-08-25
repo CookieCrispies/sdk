@@ -1,5 +1,5 @@
 import invariant from 'tiny-invariant'
-import { ChainId, CurrencyAmount, CAVAX, Pair, Percent, Route, Router, Token, TokenAmount, Trade, WAVAX } from '../src'
+import { ChainId, CurrencyAmount, CAVAX, Pair, Percent, Route, Router, Token, TokenAmount, Trade, WBONE } from '../src'
 import JSBI from 'jsbi'
 
 function checkDeadline(deadline: string[] | string): void {
@@ -10,12 +10,12 @@ function checkDeadline(deadline: string[] | string): void {
 }
 
 describe('Router', () => {
-  const token0 = new Token(ChainId.AVALANCHE, '0x0000000000000000000000000000000000000001', 18, 't0')
-  const token1 = new Token(ChainId.AVALANCHE, '0x0000000000000000000000000000000000000002', 18, 't1')
+  const token0 = new Token(ChainId.SHIBARIUM, '0x0000000000000000000000000000000000000001', 18, 't0')
+  const token1 = new Token(ChainId.SHIBARIUM, '0x0000000000000000000000000000000000000002', 18, 't1')
 
-  const pair_0_1 = new Pair(new TokenAmount(token0, JSBI.BigInt(1000)), new TokenAmount(token1, JSBI.BigInt(1000)), ChainId.AVALANCHE)
+  const pair_0_1 = new Pair(new TokenAmount(token0, JSBI.BigInt(1000)), new TokenAmount(token1, JSBI.BigInt(1000)), ChainId.SHIBARIUM)
 
-  const pair_weth_0 = new Pair(new TokenAmount(WAVAX[ChainId.AVALANCHE], '1000'), new TokenAmount(token0, '1000'), ChainId.AVALANCHE)
+  const pair_weth_0 = new Pair(new TokenAmount(WBONE[ChainId.SHIBARIUM], '1000'), new TokenAmount(token0, '1000'), ChainId.SHIBARIUM)
 
   describe('#swapCallParameters', () => {
     describe('exact in', () => {
@@ -27,7 +27,7 @@ describe('Router', () => {
         expect(result.methodName).toEqual('swapExactETHForTokens')
         expect(result.args.slice(0, -1)).toEqual([
           '0x51',
-          [WAVAX[ChainId.AVALANCHE].address, token0.address, token1.address],
+          [WBONE[ChainId.SHIBARIUM].address, token0.address, token1.address],
           '0x0000000000000000000000000000000000000004'
         ])
         expect(result.value).toEqual('0x64')
@@ -46,7 +46,7 @@ describe('Router', () => {
         expect(result.methodName).toEqual('swapExactETHForTokens')
         expect(result.args).toEqual([
           '0x51',
-          [WAVAX[ChainId.AVALANCHE].address, token0.address, token1.address],
+          [WBONE[ChainId.SHIBARIUM].address, token0.address, token1.address],
           '0x0000000000000000000000000000000000000004',
           '0x32'
         ])
@@ -62,7 +62,7 @@ describe('Router', () => {
         expect(result.args.slice(0, -1)).toEqual([
           '0x64',
           '0x51',
-          [token1.address, token0.address, WAVAX[ChainId.AVALANCHE].address],
+          [token1.address, token0.address, WBONE[ChainId.SHIBARIUM].address],
           '0x0000000000000000000000000000000000000004'
         ])
         expect(result.value).toEqual('0x0')
@@ -93,7 +93,7 @@ describe('Router', () => {
         expect(result.methodName).toEqual('swapETHForExactTokens')
         expect(result.args.slice(0, -1)).toEqual([
           '0x64',
-          [WAVAX[ChainId.AVALANCHE].address, token0.address, token1.address],
+          [WBONE[ChainId.SHIBARIUM].address, token0.address, token1.address],
           '0x0000000000000000000000000000000000000004'
         ])
         expect(result.value).toEqual('0x80')
@@ -108,7 +108,7 @@ describe('Router', () => {
         expect(result.args.slice(0, -1)).toEqual([
           '0x64',
           '0x80',
-          [token1.address, token0.address, WAVAX[ChainId.AVALANCHE].address],
+          [token1.address, token0.address, WBONE[ChainId.SHIBARIUM].address],
           '0x0000000000000000000000000000000000000004'
         ])
         expect(result.value).toEqual('0x0')
@@ -145,7 +145,7 @@ describe('Router', () => {
           expect(result.methodName).toEqual('swapExactETHForTokensSupportingFeeOnTransferTokens')
           expect(result.args.slice(0, -1)).toEqual([
             '0x51',
-            [WAVAX[ChainId.AVALANCHE].address, token0.address, token1.address],
+            [WBONE[ChainId.SHIBARIUM].address, token0.address, token1.address],
             '0x0000000000000000000000000000000000000004'
           ])
           expect(result.value).toEqual('0x64')
@@ -165,7 +165,7 @@ describe('Router', () => {
           expect(result.args.slice(0, -1)).toEqual([
             '0x64',
             '0x51',
-            [token1.address, token0.address, WAVAX[ChainId.AVALANCHE].address],
+            [token1.address, token0.address, WBONE[ChainId.SHIBARIUM].address],
             '0x0000000000000000000000000000000000000004'
           ])
           expect(result.value).toEqual('0x0')
